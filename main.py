@@ -11,7 +11,7 @@ def main():
     coupon.set_coupon_amount(1000.00)
     client.purchase_coupon(coupon)
     print(client.list_coupon())
-    print(camry.registration_number)
+    print(client.get_age())
 
 if __name__ == '__main__':
     main()

@@ -23,10 +23,22 @@ class Coupon:
         return f'{self.coupon_id} expires on [{self.expires_on}]'
 
 @dataclass
-class Client:
+class Person:
+    first_name: str
+    middle_name: str
+    last_name: str
+    gender: str
+    date_of_birth: date
+    mobile_number: str
+    email_address: str = field(default='')
+
+    def get_age(self):
+        return date.today() - self.date_of_birth
+
+@dataclass
+class Client(Person):
 
     GENDER = ('Male', 'Female', 'Other')
-
     first_name: str
     middle_name: str
     last_name: str
@@ -36,11 +48,8 @@ class Client:
     email_address: str = field(default='')
     
 
-
-    def client_age(self):
-        return date.today() - self.date_of_birth
-
     def __post_init__(self):
+        super().__init__(self.first_name, self.middle_name, self.last_name, self.gender, self.date_of_birth, self.mobile_number, self.email_address)
         self.client_id = self.first_name[0] + self.last_name[0] + str(date.today().year)[-2:] + str(random.randrange(100, 999))
         self._coupon = []
     
@@ -49,3 +58,16 @@ class Client:
 
     def list_coupon(self):
         return self._coupon
+
+@dataclass
+class Staff(Person):
+    first_name: str
+    middle_name: str
+    last_name: str
+    gender: str
+    date_of_birth: date
+    mobile_number: str
+    email_address: str = field(default='')
+
+    def __post_init__(self):
+        super().__init__(self.first_name, self.middle_name, self.last_name, self.gender, self.date_of_birth, self.mobile_number, self.email_address)
