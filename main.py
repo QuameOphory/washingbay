@@ -7,10 +7,11 @@ def main():
     # print(client.client_id)
     # print(client)
     coupon = Coupon()
+    camry = Vehicle('Toyota', 'Camry 2022', 'GE-2988-22', client)
     coupon.set_coupon_amount(1000.00)
     client.purchase_coupon(coupon)
     print(client.list_coupon())
-    print(client.client_age())
+    print(camry.registration_number)
 
 if __name__ == '__main__':
     main()
